@@ -5,7 +5,7 @@ SCALE OS v10.0
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError, HTTPException
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
@@ -23,19 +23,18 @@ from app.middleware.error import (
 )
 from app.routers import (
     health, auth, users,
-    user_groups, user_profiles, user_points
+    user_groups, user_profiles, user_points,
+    categories, posts, comments, tags
 )
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """应用生命周期管理"""
-    # 启动时
     print(f"[SCALE] {settings.APP_NAME} 启动...")
     print(f"[SCALE] 环境: {settings.APP_ENV}")
     print(f"[SCALE] 版本: {settings.SCALE_VERSION}")
     yield
-    # 关闭时
     print(f"[SCALE] {settings.APP_NAME} 关闭...")
 
 
@@ -73,6 +72,10 @@ app.include_router(users.router, prefix="/users", tags=["用户"])
 app.include_router(user_groups.router, prefix="/groups", tags=["用户组"])
 app.include_router(user_profiles.router, prefix="/profiles", tags=["用户资料"])
 app.include_router(user_points.router, prefix="/points", tags=["积分"])
+app.include_router(categories.router, prefix="/categories", tags=["分类"])
+app.include_router(posts.router, prefix="/posts", tags=["帖子"])
+app.include_router(comments.router, prefix="/comments", tags=["评论"])
+app.include_router(tags.router, prefix="/tags", tags=["标签"])
 
 
 @app.get("/")
