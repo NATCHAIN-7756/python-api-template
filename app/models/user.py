@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from app.models.post import Post
     from app.models.comment import Comment
     from app.models.follow import Follow
+    from app.models.tenant import Tenant
 
 
 class User(Base):
@@ -56,6 +57,7 @@ class User(Base):
     comments: Mapped[list["Comment"]] = relationship("Comment", foreign_keys="Comment.author_id", back_populates="author")
     followers: Mapped[list["Follow"]] = relationship("Follow", foreign_keys="Follow.following_id", back_populates="following")
     following: Mapped[list["Follow"]] = relationship("Follow", foreign_keys="Follow.follower_id", back_populates="follower")
+    tenants: Mapped[list["Tenant"]] = relationship("Tenant", back_populates="owner")
 
     def __repr__(self) -> str:
         return f"<User {self.username}>"

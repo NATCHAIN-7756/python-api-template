@@ -15,6 +15,8 @@ from app.routers.messages import router as messages_router
 from app.routers.files import router as files_router
 from app.routers.search import router as search_router
 from app.routers.admin import router as admin_router
+from app.routers.tenants import router as tenants_router
+from app.routers.addons import router as addons_router
 
 health = health_router
 auth = auth_router
@@ -32,3 +34,5 @@ messages = messages_router
 files = files_router
 search = search_router
 admin = admin_router
+tenants = tenants_router
+addons = addons_router

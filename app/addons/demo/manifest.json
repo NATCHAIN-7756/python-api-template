@@ -1,0 +1,26 @@
+{
+    "name": "演示插件",
+    "identifier": "demo",
+    "version": "1.0.0",
+    "author": "SCALE OS",
+    "description": "演示插件功能，包含钩子注册、路由扩展等",
+    "type": "business",
+    "installed": false,
+    "enabled": false,
+    "bindings": {
+        "menu": [
+            {
+                "title": "演示功能",
+                "do": "index",
+                "icon": "fa-star"
+            }
+        ]
+    },
+    "subscribes": [
+        "user.register",
+        "post.create"
+    ],
+    "handles": [
+        "custom.demo"
+    ]
+}

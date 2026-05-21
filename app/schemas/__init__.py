@@ -35,6 +35,10 @@ from app.schemas.file import (
 from app.schemas.search import (
     SearchResponse, SearchResult, SearchHistoryResponse, HotSearchResponse
 )
+from app.schemas.tenant import (
+    TenantCreate, TenantUpdate, TenantResponse, TenantDetailResponse,
+    TenantAddonResponse, TenantUserResponse
+)
 
 __all__ = [
     # User
@@ -59,4 +63,7 @@ __all__ = [
     "FileResponse", "FileListResponse", "FileUpdate", "UploadResponse", "FileStats",
     # Search
     "SearchResponse", "SearchResult", "SearchHistoryResponse", "HotSearchResponse",
+    # Tenant
+    "TenantCreate", "TenantUpdate", "TenantResponse", "TenantDetailResponse",
+    "TenantAddonResponse", "TenantUserResponse",
 ]

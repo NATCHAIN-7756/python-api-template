@@ -18,6 +18,7 @@ from app.models.follow import Follow, Friend
 from app.models.message import Message, Notification
 from app.models.file import File, FileConfig
 from app.models.search import SearchIndex, SearchHistory, HotSearch
+from app.models.tenant import Tenant, TenantConfig, TenantAddon, TenantUser, TenantDomain
 
 __all__ = [
     "User",
@@ -47,4 +48,9 @@ __all__ = [
     "SearchIndex",
     "SearchHistory",
     "HotSearch",
+    "Tenant",
+    "TenantConfig",
+    "TenantAddon",
+    "TenantUser",
+    "TenantDomain",
 ]
