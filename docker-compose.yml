@@ -1,0 +1,70 @@
+# Docker Compose - Development/Single Server
+# SCALE OS v10.0
+# Usage: docker-compose up -d
+
+version: "3.8"
+
+services:
+  # ============ Application ============
+  api:
+    build:
+      context: .
+      target: development
+    container_name: python-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/appdb
+      - SECRET_KEY=dev-secret-key-change-in-production
+      - APP_ENV=development
+    volumes:
+      - ./app:/app/app:ro
+      - uploads:/app/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  # ============ Database ============
+  db:
+    image: postgres:15-alpine
+    container_name: python-api-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=appdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  # ============ Redis (Optional, for caching) ============
+  redis:
+    image: redis:7-alpine
+    container_name: python-api-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+  uploads:
+  redis_data:
+
+networks:
+  app-network:
+    driver: bridge
