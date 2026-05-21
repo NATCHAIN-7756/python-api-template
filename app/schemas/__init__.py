@@ -39,6 +39,10 @@ from app.schemas.tenant import (
     TenantCreate, TenantUpdate, TenantResponse, TenantDetailResponse,
     TenantAddonResponse, TenantUserResponse
 )
+from app.schemas.menu import (
+    MenuCreate, MenuUpdate, MenuResponse, MenuTreeResponse,
+    MenuItemResponse, UserMenuResponse
+)
 
 __all__ = [
     # User
@@ -66,4 +70,7 @@ __all__ = [
     # Tenant
     "TenantCreate", "TenantUpdate", "TenantResponse", "TenantDetailResponse",
     "TenantAddonResponse", "TenantUserResponse",
+    # Menu
+    "MenuCreate", "MenuUpdate", "MenuResponse", "MenuTreeResponse",
+    "MenuItemResponse", "UserMenuResponse",
 ]
