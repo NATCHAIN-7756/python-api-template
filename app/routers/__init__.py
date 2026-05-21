@@ -18,6 +18,7 @@ from app.routers.admin import router as admin_router
 from app.routers.tenants import router as tenants_router
 from app.routers.addons import router as addons_router
 from app.routers.menus import router as menus_router
+from app.routers.logs import router as logs_router
 
 health = health_router
 auth = auth_router
@@ -38,3 +39,4 @@ admin = admin_router
 tenants = tenants_router
 addons = addons_router
 menus = menus_router
+logs = logs_router

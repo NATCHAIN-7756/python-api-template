@@ -43,6 +43,10 @@ from app.schemas.menu import (
     MenuCreate, MenuUpdate, MenuResponse, MenuTreeResponse,
     MenuItemResponse, UserMenuResponse
 )
+from app.schemas.log import (
+    LogResponse, AuditLogResponse, RequestLogResponse,
+    LogStatsResponse, LogQuery
+)
 
 __all__ = [
     # User
@@ -73,4 +77,7 @@ __all__ = [
     # Menu
     "MenuCreate", "MenuUpdate", "MenuResponse", "MenuTreeResponse",
     "MenuItemResponse", "UserMenuResponse",
+    # Log
+    "LogResponse", "AuditLogResponse", "RequestLogResponse",
+    "LogStatsResponse", "LogQuery",
 ]

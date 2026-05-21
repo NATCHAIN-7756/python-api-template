@@ -26,7 +26,7 @@ from app.routers import (
     user_groups, user_profiles, user_points,
     categories, posts, comments, tags,
     likes, follows, messages, files,
-    search, admin, tenants, addons, menus
+    search, admin, tenants, addons, menus, logs
 )
 
 
@@ -87,6 +87,7 @@ app.include_router(admin.router, prefix="/admin", tags=["管理后台"])
 app.include_router(tenants.router, prefix="/tenants", tags=["租户管理"])
 app.include_router(addons.router, prefix="/addons", tags=["插件管理"])
 app.include_router(menus.router, prefix="/menus", tags=["菜单管理"])
+app.include_router(logs.router, prefix="/logs", tags=["日志管理"])
 
 
 @app.get("/")

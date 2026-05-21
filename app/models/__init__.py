@@ -20,6 +20,7 @@ from app.models.file import File, FileConfig
 from app.models.search import SearchIndex, SearchHistory, HotSearch
 from app.models.tenant import Tenant, TenantConfig, TenantAddon, TenantUser, TenantDomain
 from app.models.menu import Menu, MenuItem, UserMenu
+from app.models.log import Log, AuditLog, RequestLog, LogLevel, LogType
 
 __all__ = [
     "User",
@@ -57,4 +58,9 @@ __all__ = [
     "Menu",
     "MenuItem",
     "UserMenu",
+    "Log",
+    "AuditLog",
+    "RequestLog",
+    "LogLevel",
+    "LogType",
 ]
