@@ -1,0 +1,22 @@
+{
+  "version": "2.0",
+  "project": "python-api-template",
+  "currentPhase": "explore",
+  "currentTier": "critical",
+  "techStack": "python",
+  "github": "https://github.com/NATCHAIN-7756/python-api-template",
+  "gates": {
+    "G1": {"status": "pending", "description": "探索完成"},
+    "G2": {"status": "pending", "description": "规划完成"},
+    "G3": {"status": "pending", "description": "TDD 合规"},
+    "G4": {"status": "pending", "description": "Lint 通过"},
+    "G5": {"status": "pending", "description": "测试通过"},
+    "G6": {"status": "skipped", "description": "安全检查"},
+    "G7": {"status": "pending", "description": "沉淀完成"}
+  },
+  "commands": {
+    "dev": "python -m uvicorn app.main:app --reload",
+    "test": "pytest",
+    "lint": "ruff check ."
+  }
+}
