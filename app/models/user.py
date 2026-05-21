@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from app.models.user_level import UserOnline
     from app.models.post import Post
     from app.models.comment import Comment
+    from app.models.follow import Follow
 
 
 class User(Base):
@@ -53,6 +54,8 @@ class User(Base):
     online: Mapped[Optional["UserOnline"]] = relationship("UserOnline", back_populates="user", uselist=False)
     posts: Mapped[list["Post"]] = relationship("Post", back_populates="author")
     comments: Mapped[list["Comment"]] = relationship("Comment", foreign_keys="Comment.author_id", back_populates="author")
+    followers: Mapped[list["Follow"]] = relationship("Follow", foreign_keys="Follow.following_id", back_populates="following")
+    following: Mapped[list["Follow"]] = relationship("Follow", foreign_keys="Follow.follower_id", back_populates="follower")
 
     def __repr__(self) -> str:
         return f"<User {self.username}>"

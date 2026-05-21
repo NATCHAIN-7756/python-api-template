@@ -24,7 +24,8 @@ from app.middleware.error import (
 from app.routers import (
     health, auth, users,
     user_groups, user_profiles, user_points,
-    categories, posts, comments, tags
+    categories, posts, comments, tags,
+    likes, follows, messages
 )
 
 
@@ -76,6 +77,9 @@ app.include_router(categories.router, prefix="/categories", tags=["分类"])
 app.include_router(posts.router, prefix="/posts", tags=["帖子"])
 app.include_router(comments.router, prefix="/comments", tags=["评论"])
 app.include_router(tags.router, prefix="/tags", tags=["标签"])
+app.include_router(likes.router, prefix="/interactions", tags=["点赞收藏"])
+app.include_router(follows.router, prefix="/social", tags=["关注好友"])
+app.include_router(messages.router, prefix="/messages", tags=["私信通知"])
 
 
 @app.get("/")

@@ -13,24 +13,20 @@ from app.models.category import Category
 from app.models.post import Post, PostStatus, PostType
 from app.models.comment import Comment
 from app.models.tag import Tag, PostTag
+from app.models.like import Like, Favorite
+from app.models.follow import Follow, Friend
+from app.models.message import Message, Notification
 
 __all__ = [
-    # User
     "User",
-    # UserGroup
     "UserGroup",
-    # UserProfile
     "UserProfile",
-    # UserPoints
     "UserPoints",
     "PointsLog",
-    # UserLevel
     "UserLevel",
     "UserOnline",
-    # Permission
     "Permission",
     "GroupPermission",
-    # Content
     "Category",
     "Post",
     "PostStatus",
@@ -38,4 +34,10 @@ __all__ = [
     "Comment",
     "Tag",
     "PostTag",
+    "Like",
+    "Favorite",
+    "Follow",
+    "Friend",
+    "Message",
+    "Notification",
 ]

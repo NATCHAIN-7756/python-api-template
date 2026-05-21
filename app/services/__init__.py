@@ -11,6 +11,9 @@ from app.services.category import CategoryService
 from app.services.post import PostService
 from app.services.comment import CommentService
 from app.services.tag import TagService
+from app.services.like import LikeService, FavoriteService
+from app.services.follow import FollowService, FriendService
+from app.services.message import MessageService, NotificationService
 
 __all__ = [
     "UserService",
@@ -22,4 +25,10 @@ __all__ = [
     "PostService",
     "CommentService",
     "TagService",
+    "LikeService",
+    "FavoriteService",
+    "FollowService",
+    "FriendService",
+    "MessageService",
+    "NotificationService",
 ]

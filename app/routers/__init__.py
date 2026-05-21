@@ -9,6 +9,9 @@ from app.routers.categories import router as categories_router
 from app.routers.posts import router as posts_router
 from app.routers.comments import router as comments_router
 from app.routers.tags import router as tags_router
+from app.routers.likes import router as likes_router
+from app.routers.follows import router as follows_router
+from app.routers.messages import router as messages_router
 
 health = health_router
 auth = auth_router
@@ -20,3 +23,6 @@ categories = categories_router
 posts = posts_router
 comments = comments_router
 tags = tags_router
+likes = likes_router
+follows = follows_router
+messages = messages_router
