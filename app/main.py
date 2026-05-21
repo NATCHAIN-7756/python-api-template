@@ -5,10 +5,22 @@ SCALE OS v10.0
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.exceptions import RequestValidationError, HTTPException
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 from app.config import settings
+from app.middleware.logging import LoggingMiddleware
+from app.middleware.error import (
+    AppException,
+    app_exception_handler,
+    http_exception_handler,
+    validation_exception_handler,
+    integrity_error_handler,
+    sqlalchemy_error_handler,
+    general_exception_handler,
+)
 from app.routers import (
     health, auth, users,
     user_groups, user_profiles, user_points
@@ -20,6 +32,8 @@ async def lifespan(app: FastAPI):
     """应用生命周期管理"""
     # 启动时
     print(f"[SCALE] {settings.APP_NAME} 启动...")
+    print(f"[SCALE] 环境: {settings.APP_ENV}")
+    print(f"[SCALE] 版本: {settings.SCALE_VERSION}")
     yield
     # 关闭时
     print(f"[SCALE] {settings.APP_NAME} 关闭...")
@@ -41,6 +55,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 日志中间件
+app.add_middleware(LoggingMiddleware)
+
+# 异常处理器
+app.add_exception_handler(AppException, app_exception_handler)
+app.add_exception_handler(HTTPException, http_exception_handler)
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
+app.add_exception_handler(IntegrityError, integrity_error_handler)
+app.add_exception_handler(SQLAlchemyError, sqlalchemy_error_handler)
+app.add_exception_handler(Exception, general_exception_handler)
+
 # 路由
 app.include_router(health.router, tags=["健康检查"])
 app.include_router(auth.router, prefix="/auth", tags=["认证"])
@@ -57,5 +82,6 @@ async def root():
         "name": settings.APP_NAME,
         "version": "0.1.0",
         "status": "running",
-        "scale_version": "10.0",
+        "scale_version": settings.SCALE_VERSION,
+        "env": settings.APP_ENV,
     }
