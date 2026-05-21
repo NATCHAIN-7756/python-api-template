@@ -17,6 +17,7 @@ from app.models.like import Like, Favorite
 from app.models.follow import Follow, Friend
 from app.models.message import Message, Notification
 from app.models.file import File, FileConfig
+from app.models.search import SearchIndex, SearchHistory, HotSearch
 
 __all__ = [
     "User",
@@ -43,4 +44,7 @@ __all__ = [
     "Notification",
     "File",
     "FileConfig",
+    "SearchIndex",
+    "SearchHistory",
+    "HotSearch",
 ]

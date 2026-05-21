@@ -32,6 +32,9 @@ from app.schemas.tag import (
 from app.schemas.file import (
     FileResponse, FileListResponse, FileUpdate, UploadResponse, FileStats
 )
+from app.schemas.search import (
+    SearchResponse, SearchResult, SearchHistoryResponse, HotSearchResponse
+)
 
 __all__ = [
     # User
@@ -54,4 +57,6 @@ __all__ = [
     "TagBase", "TagCreate", "TagUpdate", "TagResponse", "TagSimple",
     # File
     "FileResponse", "FileListResponse", "FileUpdate", "UploadResponse", "FileStats",
+    # Search
+    "SearchResponse", "SearchResult", "SearchHistoryResponse", "HotSearchResponse",
 ]
