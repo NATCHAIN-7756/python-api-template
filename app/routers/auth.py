@@ -4,18 +4,17 @@ SCALE OS v10.0
 """
 
 from datetime import datetime, timedelta
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 
 from app.config import settings
+from app.database import get_db
+from app.services.user import UserService
 
 router = APIRouter()
-
-# 密码加密
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # OAuth2
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
@@ -43,19 +42,23 @@ def verify_token(token: str = Depends(oauth2_scheme)) -> dict:
 
 
 @router.post("/token")
-async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+async def login(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: Annotated[AsyncSession, Depends(get_db)] = None,
+):
     """登录获取 Token"""
-    # TODO: 实际验证逻辑
-    if form_data.username == "admin" and form_data.password == "admin":
-        access_token = create_access_token({"sub": form_data.username})
-        return {"access_token": access_token, "token_type": "bearer"}
-    raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="用户名或密码错误",
-    )
+    service = UserService(db)
+    user = await service.authenticate(form_data.username, form_data.password)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="用户名或密码错误",
+        )
+    access_token = create_access_token({"sub": user.username})
+    return {"access_token": access_token, "token_type": "bearer"}
 
 
 @router.get("/me")
-async def get_current_user(payload: dict = Depends(verify_token)):
-    """获取当前用户"""
+async def get_current_user_info(payload: dict = Depends(verify_token)):
+    """获取当前用户信息"""
     return {"username": payload.get("sub")}
