@@ -14,6 +14,7 @@ from app.services.tag import TagService
 from app.services.like import LikeService, FavoriteService
 from app.services.follow import FollowService, FriendService
 from app.services.message import MessageService, NotificationService
+from app.services.file import FileService
 
 __all__ = [
     "UserService",
@@ -31,4 +32,5 @@ __all__ = [
     "FriendService",
     "MessageService",
     "NotificationService",
+    "FileService",
 ]

@@ -16,6 +16,7 @@ from app.models.tag import Tag, PostTag
 from app.models.like import Like, Favorite
 from app.models.follow import Follow, Friend
 from app.models.message import Message, Notification
+from app.models.file import File, FileConfig
 
 __all__ = [
     "User",
@@ -40,4 +41,6 @@ __all__ = [
     "Friend",
     "Message",
     "Notification",
+    "File",
+    "FileConfig",
 ]

@@ -25,7 +25,7 @@ from app.routers import (
     health, auth, users,
     user_groups, user_profiles, user_points,
     categories, posts, comments, tags,
-    likes, follows, messages
+    likes, follows, messages, files
 )
 
 
@@ -80,6 +80,7 @@ app.include_router(tags.router, prefix="/tags", tags=["标签"])
 app.include_router(likes.router, prefix="/interactions", tags=["点赞收藏"])
 app.include_router(follows.router, prefix="/social", tags=["关注好友"])
 app.include_router(messages.router, prefix="/messages", tags=["私信通知"])
+app.include_router(files.router, prefix="/files", tags=["文件上传"])
 
 
 @app.get("/")

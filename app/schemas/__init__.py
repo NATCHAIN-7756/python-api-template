@@ -29,6 +29,9 @@ from app.schemas.comment import (
 from app.schemas.tag import (
     TagBase, TagCreate, TagUpdate, TagResponse, TagSimple
 )
+from app.schemas.file import (
+    FileResponse, FileListResponse, FileUpdate, UploadResponse, FileStats
+)
 
 __all__ = [
     # User
@@ -49,4 +52,6 @@ __all__ = [
     "CommentBase", "CommentCreate", "CommentUpdate", "CommentResponse", "CommentDetailResponse", "CommentListResponse",
     # Tag
     "TagBase", "TagCreate", "TagUpdate", "TagResponse", "TagSimple",
+    # File
+    "FileResponse", "FileListResponse", "FileUpdate", "UploadResponse", "FileStats",
 ]

@@ -12,6 +12,7 @@ from app.routers.tags import router as tags_router
 from app.routers.likes import router as likes_router
 from app.routers.follows import router as follows_router
 from app.routers.messages import router as messages_router
+from app.routers.files import router as files_router
 
 health = health_router
 auth = auth_router
@@ -26,3 +27,4 @@ tags = tags_router
 likes = likes_router
 follows = follows_router
 messages = messages_router
+files = files_router
