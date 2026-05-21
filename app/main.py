@@ -9,7 +9,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routers import health, auth, users
+from app.routers import (
+    health, auth, users,
+    user_groups, user_profiles, user_points
+)
 
 
 @asynccontextmanager
@@ -42,6 +45,9 @@ app.add_middleware(
 app.include_router(health.router, tags=["健康检查"])
 app.include_router(auth.router, prefix="/auth", tags=["认证"])
 app.include_router(users.router, prefix="/users", tags=["用户"])
+app.include_router(user_groups.router, prefix="/groups", tags=["用户组"])
+app.include_router(user_profiles.router, prefix="/profiles", tags=["用户资料"])
+app.include_router(user_points.router, prefix="/points", tags=["积分"])
 
 
 @app.get("/")
