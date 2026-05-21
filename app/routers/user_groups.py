@@ -37,9 +37,9 @@ async def create_group(
 
 @router.get("/", response_model=list[UserGroupResponse])
 async def get_groups(
+    db: Annotated[AsyncSession, Depends(get_db)],
     skip: int = 0,
     limit: int = 100,
-    db: Annotated[AsyncSession, Depends(get_db)],
 ):
     """获取用户组列表"""
     service = UserGroupService(db)

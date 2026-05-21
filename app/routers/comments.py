@@ -41,11 +41,11 @@ async def create_comment(
 
 @router.get("/", response_model=CommentListResponse)
 async def get_comments(
+    db: Annotated[AsyncSession, Depends(get_db)],
     post_id: int = Query(...),
     parent_id: Optional[int] = Query(None),
     skip: int = Query(0, ge=0),
     limit: int = Query(50, ge=1, le=100),
-    db: Annotated[AsyncSession, Depends(get_db)],
 ):
     """获取评论列表"""
     service = CommentService(db)

@@ -30,10 +30,10 @@ async def get_my_points(
 
 @router.get("/me/logs", response_model=list[PointsLogResponse])
 async def get_my_points_logs(
-    skip: int = 0,
-    limit: int = 50,
     db: Annotated[AsyncSession, Depends(get_db)],
     current_user: Annotated[UserResponse, Depends(get_current_user)],
+    skip: int = 0,
+    limit: int = 50,
 ):
     """获取当前用户积分日志"""
     service = UserPointsService(db)

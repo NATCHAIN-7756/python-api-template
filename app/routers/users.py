@@ -54,10 +54,10 @@ async def create_user(
 
 @router.get("/", response_model=UserListResponse)
 async def get_users(
-    skip: int = 0,
-    limit: int = 100,
     db: Annotated[AsyncSession, Depends(get_db)],
     current_user: Annotated[UserResponse, Depends(get_current_user)],
+    skip: int = 0,
+    limit: int = 100,
 ):
     """获取用户列表（需要认证）"""
     service = UserService(db)

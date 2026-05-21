@@ -37,8 +37,8 @@ async def create_category(
 
 @router.get("/", response_model=list[CategoryResponse])
 async def get_categories(
-    parent_id: int = None,
     db: Annotated[AsyncSession, Depends(get_db)],
+    parent_id: int = None,
 ):
     """获取分类列表"""
     service = CategoryService(db)

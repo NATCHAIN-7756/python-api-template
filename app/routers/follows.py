@@ -39,10 +39,10 @@ async def toggle_follow(
 
 @router.get("/followers", response_model=FollowListResponse)
 async def get_followers(
-    skip: int = 0,
-    limit: int = 50,
     db: Annotated[AsyncSession, Depends(get_db)],
     current_user: Annotated[UserResponse, Depends(get_current_user)],
+    skip: int = 0,
+    limit: int = 50,
 ):
     """获取粉丝列表"""
     service = FollowService(db)
@@ -56,10 +56,10 @@ async def get_followers(
 
 @router.get("/following", response_model=FollowListResponse)
 async def get_following(
-    skip: int = 0,
-    limit: int = 50,
     db: Annotated[AsyncSession, Depends(get_db)],
     current_user: Annotated[UserResponse, Depends(get_current_user)],
+    skip: int = 0,
+    limit: int = 50,
 ):
     """获取关注列表"""
     service = FollowService(db)
@@ -116,10 +116,10 @@ async def reject_friend(
 
 @router.get("/friends", response_model=FriendListResponse)
 async def get_friends(
-    skip: int = 0,
-    limit: int = 50,
     db: Annotated[AsyncSession, Depends(get_db)],
     current_user: Annotated[UserResponse, Depends(get_current_user)],
+    skip: int = 0,
+    limit: int = 50,
 ):
     """获取好友列表"""
     service = FriendService(db)

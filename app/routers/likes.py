@@ -48,10 +48,10 @@ async def toggle_favorite(
 
 @router.get("/favorites", response_model=FavoriteListResponse)
 async def get_favorites(
-    skip: int = 0,
-    limit: int = 50,
     db: Annotated[AsyncSession, Depends(get_db)],
     current_user: Annotated[UserResponse, Depends(get_current_user)],
+    skip: int = 0,
+    limit: int = 50,
 ):
     """获取收藏列表"""
     service = FavoriteService(db)

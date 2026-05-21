@@ -39,10 +39,10 @@ async def send_message(
 @router.get("/messages/{user_id}", response_model=MessageListResponse)
 async def get_conversation(
     user_id: int,
-    skip: int = Query(0, ge=0),
-    limit: int = Query(50, ge=1, le=100),
     db: Annotated[AsyncSession, Depends(get_db)],
     current_user: Annotated[UserResponse, Depends(get_current_user)],
+    skip: int = Query(0, ge=0),
+    limit: int = Query(50, ge=1, le=100),
 ):
     """获取对话记录"""
     service = MessageService(db)
@@ -74,11 +74,11 @@ async def get_unread_count(
 
 @router.get("/notifications", response_model=NotificationListResponse)
 async def get_notifications(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    current_user: Annotated[UserResponse, Depends(get_current_user)],
     notification_type: Optional[str] = Query(None),
     skip: int = Query(0, ge=0),
     limit: int = Query(50, ge=1, le=100),
-    db: Annotated[AsyncSession, Depends(get_db)],
-    current_user: Annotated[UserResponse, Depends(get_current_user)],
 ):
     """获取通知列表"""
     service = NotificationService(db)

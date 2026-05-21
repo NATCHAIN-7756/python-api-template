@@ -39,12 +39,12 @@ async def create_post(
 
 @router.get("/", response_model=PostListResponse)
 async def get_posts(
+    db: Annotated[AsyncSession, Depends(get_db)],
     category_id: Optional[int] = Query(None),
     author_id: Optional[int] = Query(None),
     status: Optional[PostStatus] = Query(None),
     skip: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=100),
-    db: Annotated[AsyncSession, Depends(get_db)],
 ):
     """获取帖子列表"""
     service = PostService(db)

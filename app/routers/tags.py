@@ -32,9 +32,9 @@ async def create_tag(
 
 @router.get("/", response_model=list[TagResponse])
 async def get_tags(
+    db: Annotated[AsyncSession, Depends(get_db)],
     skip: int = 0,
     limit: int = 50,
-    db: Annotated[AsyncSession, Depends(get_db)],
 ):
     """获取标签列表"""
     service = TagService(db)
@@ -44,8 +44,8 @@ async def get_tags(
 
 @router.get("/hot", response_model=list[TagSimple])
 async def get_hot_tags(
-    limit: int = 10,
     db: Annotated[AsyncSession, Depends(get_db)],
+    limit: int = 10,
 ):
     """获取热门标签"""
     service = TagService(db)
